@@ -1,0 +1,190 @@
+
+nav{
+  padding: 3%;
+  border-bottom: 4px solid lightgray;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  font-size: 2.2em;
+  text-decoration: none;
+  color : #d13e3e; 
+  font-weight: 800;
+ 
+}
+
+.nav-btns {
+  width: 50%;
+  text-align: end;
+}
+.nav-btns button {
+  background-color: lightgray;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 2% 5%;
+  margin: 1%;
+  color : #1c2121;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+}
+#delete-product-btn{
+ 
+  border: 2px solid #d13e3e;
+  background-color: transparent;
+  color : #d13e3e;
+}
+button:hover{
+  opacity: 0.7;
+}
+
+/* PRODUCT LIST */
+.product-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5%;
+  flex-wrap: wrap;
+}
+.product-card {
+  text-align: center;
+  width: 18%;
+  padding : 3% 4%;
+  height: 200px;
+  margin: 2%;
+  border-radius: 30px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-weight: 600;
+  color : #1c2121;
+  transition: all ease-in-out 0.2s;
+}
+.product-card:hover {
+  box-shadow: rgba(209,62,62 ,0.35) 0px 5px 15px;
+}
+.product-card input {
+  cursor: pointer;
+}
+.product-name {
+  color : #d13e3e;
+  font-size: larger;
+}
+
+
+@media  screen and (max-width: 970px) {
+  .product-card{
+    width : 30%;
+    height: 250px;
+  }
+}
+
+@media  screen and (max-width: 570px) {
+  .product-card{
+    width : 60%;
+    height: 250px;
+  }
+}
+
+
+/* ADD PRODUCT */
+.form-container{
+  padding: 2% 1%;
+  height: 65vh;
+}
+#product_form{
+  width: 80%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin: 0 auto;
+}
+.form-group {
+padding: 1%;
+margin: 1%;
+}
+.form-group p {
+  color: gray;
+  font-weight: 600;
+  margin: 5%;
+}
+.form-group label {
+  margin: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  max-width: 40%;
+}
+.form-group input {
+  height: 3vh;
+  border: 1px solid lightgray;
+  width: 70%;
+  padding: 1.5%;
+  border-radius: 20px;
+}
+.form-inputs {
+  width: 70%
+}
+.form-group select {
+  border: 1px solid lightgray;
+  padding: 2%;
+  border-radius: 20px;
+}
+
+.form-btns{
+  width: 30%;
+  text-align: center;
+}
+.form-btns button {
+  background-color: lightgray;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 3% 5%;
+  margin: 1%;
+  color : #1c2121;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  font-size: 16px;
+  width: 40%;
+}
+@media  screen and (max-width: 970px) {
+  #product_form{
+   display: block;
+   width:100%;
+  }
+  
+  .form-group{
+    display: flex;
+    flex-direction: column;
+  }
+ 
+
+  .form-group label {
+   width: 30%;
+  }
+  .form-group input {
+   width: 200px !important;
+   padding: 10px;
+  }
+  .form-container{
+    height: fit-content;
+  }
+  .form-btns{
+    width: 80%;
+  }
+  .form-btns button{
+    width: 100%;
+  }
+}
+
+/* FOOTER */
+.footer {
+  height: 15vh;
+  background-color: #e8e6e6;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
