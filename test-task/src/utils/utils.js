@@ -14,17 +14,18 @@ export function processSpecifications(specifications) {
 
 export function getSpecification (e , type) {
     if(type === 'Book') {
-      let weight = e.target[5].value;
+      let weight = e.target[4].value;
+      console.log(weight);
       return {"weight" : weight}
     }
     if (type==='DVD'){
-        let size = e.target[5].value;
+        let size = e.target[4].value;
         return {"size" : size}
     }
     if(type ==='Furniture'){
-       let h =e.target[5].value;
-       let w = e.target[6].value;
-       let l= e.target[7].value;
+       let h =e.target[4].value;
+       let w = e.target[5].value;
+       let l= e.target[6].value;
        return {
         "dimensions" : {
             "height" : h,

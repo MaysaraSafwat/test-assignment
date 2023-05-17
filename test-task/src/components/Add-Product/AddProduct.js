@@ -1,55 +1,62 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
-//import fetch from "fetch";
 import { getSpecification } from "../../utils/utils";
+import { createProduct } from "../../services/ProductService";
 
 export default function AddProduct(){
     let options = ['DVD' , "Book" , "Furniture"]
     const [selectedType, setSelectedType] = useState("");
-   
-    
+    const [sku, setSku] = useState("");
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [productSpecifications, setProductSpecifications] = useState(null);
+    const [isFilled, setIsFilled]=useState(true);
 
-    const handleChange = (event)=>{
-        setSelectedType(event.target.value);
+    const handleChange = (event) => {
+      console.log(event.target.name)
+      switch (event.target.name) {
+        case "selectType":
+          setSelectedType(event.target.value);
+          break;
+        case "sku":
+          setSku(event.target.value);
+          break;
+        case "name":
+          setName(event.target.value);
+          break;
+        case "price":
+          setPrice(event.target.value);
+          break;
+      }
+    };
+
+    
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    let productSpecifications = getSpecification(event, selectedType);
+    let data = {
+      "sku": sku,
+      "name": name,
+      "price": price,
+      "product_type": selectedType.toLocaleLowerCase(),
+      "product_specifications": productSpecifications
+    };
+    for (const key in data) {
+      console.log(data[`${key}`])
+      !data[`${key}`] ? setIsFilled(false): setIsFilled(true);
+    }
+    if(isFilled){
+      let type = selectedType.toLocaleLowerCase()
+      createProduct(data , type)
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
+    }else {
+      return; 
     }
 
-    const handleSubmit = async (event)=>{
-        event.preventDefault();
-
-       let sku = event.target[1].value;
-       let name= event.target[2].value;
-       let price = event.target[3].value;
-       let product_type =event.target[4].value;
-       let product_specifications =  getSpecification(event , product_type);
-       let data= {
-        "sku" : sku,
-        "name" : name,
-        "price" : price,
-        "product_type" : product_type,
-        "product_specifications" : product_specifications
-       }
-       let type= product_type.toLowerCase()
-
-       const requestOptions = {
-        method: "POST",
-        body: JSON.stringify(data),
-            headers: {
-            "Content-Type": "application/json"
-            }
-      };
-    let url =`https://juniortesttask1.000webhostapp.com/products/${type}`
-    //  let url = `http://localhost/scandiweb-test-task/server/products/${type}`
-
-    fetch(url, requestOptions)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
+    }
+    
 
 
     return (
@@ -65,31 +72,36 @@ export default function AddProduct(){
   <div className="form-container">
     <div>
       <form method="post" id="product_form" onSubmit={handleSubmit}>
+        {
+          !isFilled && (
+            <div>Please Fill All Info</div>
+          )
+        }
         <div className="form-inputs">
         <div className="form-group">
           <label>
             SKU:
           </label>
-          <input id="sku" type="text" placeholder="Enter Sku"/>
+          <input id="sku" name="sku" type="text" placeholder="Enter Sku" onChange={handleChange}/>
         </div>
 
         <div className="form-group">
           <label>
             Name:
           </label>
-          <input id="name" type="text" placeholder="Enter Name"/>
+          <input id="name" name="name" type="text" placeholder="Enter Name"  onChange={handleChange}/>
         </div>
 
         <div className="form-group">
           <label>
             Price:
           </label>
-          <input id="price" type="text" placeholder="Enter Price"/>
+          <input id="price" type="text" name="price" placeholder="Enter Price"  onChange={handleChange}/>
         </div>
 
         <div className="form-group">
           <label>Product Switcher</label>
-          <select onChange={handleChange}>
+          <select onChange={handleChange} name="selectType">
             {options.map((option) => (
               <option key={option} value={option} id={option}>
                 {option}
@@ -105,7 +117,7 @@ export default function AddProduct(){
                 Please Provide The Weight of the Book in KGs
               </p>
               <label>Weight</label>
-              <input id="weight" type="text" placeholder="Enter Weight"/>
+              <input id="weight" type="text" placeholder="Enter Weight"  onChange={handleChange}/>
             </div>
           )
         }
@@ -117,7 +129,7 @@ export default function AddProduct(){
                 Please Provide the Size of the DVD in MBs
               </p>
               <label>Size</label>
-              <input id="size" type="text" placeholder="Enter Size"/>
+              <input id="size" type="text" placeholder="Enter Size"  onChange={handleChange}/>
             </div>
           )
         }
@@ -130,15 +142,15 @@ export default function AddProduct(){
               </p>
               <div className="form-group">
                 <label>Height</label>
-                <input id="height" type="text" placeholder="Enter Height"/>
+                <input id="height" type="text" placeholder="Enter Height"  onChange={handleChange}/>
               </div>
               <div className="form-group">
                 <label>Width</label>
-                <input id="width" type="text" placeholder="Enter Width"/>
+                <input id="width" type="text" placeholder="Enter Width"  onChange={handleChange}/>
               </div>
               <div className="form-group">
                 <label>Length</label>
-                <input id="length" type="text" placeholder="Enter Length"/>
+                <input id="length" type="text" placeholder="Enter Length" onChange={handleChange}/>
               </div>
             </div>
           )
@@ -146,9 +158,9 @@ export default function AddProduct(){
         </div>
 
         <div className="form-btns">
-          <Link to="#">
+          
             <button type="submit" form="product_form">Save</button>
-          </Link>
+          
           <Link to="/">
             <button>Cancel</button>
           </Link>
@@ -160,3 +172,5 @@ export default function AddProduct(){
 
     )
 }
+
+

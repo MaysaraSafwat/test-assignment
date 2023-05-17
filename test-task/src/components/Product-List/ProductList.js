@@ -2,6 +2,7 @@ import { Link} from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { processSpecifications } from "../../utils/utils";
+import {getProducts, deleteProducts} from "../../services/ProductService"
 
 
 export default function ProductList(){
@@ -10,20 +11,20 @@ export default function ProductList(){
 
     const deleteSelectedItems = () => {
         let data = JSON.parse(selected);
-        axios.post("https://juniortesttask1.000webhostapp.com/products", data)
-       .then(res=> {console.log(res)})
-       .catch(err=>{
-        console.log(err)
-       })
+        deleteProducts(data)
+        .then(res=> console.log(res.status))
+        .catch(err=>console.log(err))
+    
     };
 
 
 
     useEffect( () => {
-        const fetchProducts = async ()=>{
-            const res = await axios.get("https://juniortesttask1.000webhostapp.com/products");
-            setProducts(res.data.data);
-            console.log(res.data.data);
+        const fetchProducts =()=>{
+          getProducts().then(res=>{
+            console.log(res)
+            setProducts(res.data.data)
+           })
           }
           fetchProducts();
   
