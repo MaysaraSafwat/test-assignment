@@ -1,10 +1,10 @@
-import { useState, useHistory } from "react";
-import { Link } from "react-router-dom";
+import { useState} from "react";
+import { Link, useNavigate} from "react-router-dom";
 import { getSpecification } from "../../utils/utils";
 import { createProduct } from "../../services/ProductService";
 
 export default function AddProduct(){
-    const history = useHistory();
+    const navigate= useNavigate()
     let options = ['DVD' , "Book" , "Furniture"]
     const [selectedType, setSelectedType] = useState("DVD");
     const [sku, setSku] = useState("");
@@ -55,7 +55,7 @@ export default function AddProduct(){
       createProduct(data , type)
       .then(res=>{
         console.log(res)
-        history.push("/")
+        navigate("/")
       }
         )
       .catch(err=>console.log(err))
