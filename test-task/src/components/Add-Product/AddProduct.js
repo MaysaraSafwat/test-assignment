@@ -9,7 +9,6 @@ export default function AddProduct(){
     const [sku, setSku] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
-    const [productSpecifications, setProductSpecifications] = useState(null);
     const [isFilled, setIsFilled]=useState(true);
 
     const handleChange = (event) => {
