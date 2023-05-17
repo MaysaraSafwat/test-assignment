@@ -102,12 +102,12 @@ export default function AddProduct(){
         </div>
 
         <div className="form-group">
-          <label>Product Switcher</label>
+          <label for="selectType">Product Switcher</label>
           <select onChange={handleChange} name="selectType" id="productType">
             {options.map((option) => (
-              <option key={option} value={option} id={option}>
-                {option}
-              </option>
+             <option key={option} value={option} id={option}>
+              {option}
+            </option>
             ))}
           </select>
         </div>
