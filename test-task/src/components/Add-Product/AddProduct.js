@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import { Link } from "react-router-dom";
 import { getSpecification } from "../../utils/utils";
 import { createProduct } from "../../services/ProductService";
 
 export default function AddProduct(){
+    const history = useHistory();
     let options = ['DVD' , "Book" , "Furniture"]
     const [selectedType, setSelectedType] = useState("DVD");
     const [sku, setSku] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [isFilled, setIsFilled]=useState(true);
+
 
     const handleChange = (event) => {
       console.log(event.target.name)
@@ -51,7 +53,11 @@ export default function AddProduct(){
     if(isFilled){
       let type = selectedType.toLocaleLowerCase()
       createProduct(data , type)
-      .then(res=>console.log(res))
+      .then(res=>{
+        console.log(res)
+        history.push("/")
+      }
+        )
       .catch(err=>console.log(err))
     }else {
       return; 
