@@ -51,7 +51,7 @@ export default function ProductList(){
           <div className="product-list">
           {products.map(item => (
                 <div className="product-card">
-                   <input type="checkbox" onChange={()=> {
+                   <input type="checkbox" className="delete-checkbox" onChange={()=> {
                      if (!selected.includes(item.id)) {
                      setSelected([...selected , item.id])
                      }else{
