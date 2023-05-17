@@ -5,7 +5,7 @@ import { createProduct } from "../../services/ProductService";
 
 export default function AddProduct(){
     let options = ['DVD' , "Book" , "Furniture"]
-    const [selectedType, setSelectedType] = useState("");
+    const [selectedType, setSelectedType] = useState("DVD");
     const [sku, setSku] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
