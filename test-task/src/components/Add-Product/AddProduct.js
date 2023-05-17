@@ -26,6 +26,9 @@ export default function AddProduct(){
         case "price":
           setPrice(event.target.value);
           break;
+        default:
+          console.log("Unknown input");
+          break;
       }
     };
 

@@ -1,5 +1,4 @@
 import { Link} from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { processSpecifications } from "../../utils/utils";
 import {getProducts, deleteProducts} from "../../services/ProductService"
