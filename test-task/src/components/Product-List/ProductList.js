@@ -1,6 +1,6 @@
 import { Link} from "react-router-dom";
 import { useEffect, useState } from "react";
-import { processSpecifications } from "../../utils/utils";
+import { processSpecifications, capitalize } from "../../utils/utils";
 import {getProducts, deleteProducts} from "../../services/ProductService"
 
 
@@ -61,6 +61,7 @@ export default function ProductList(){
                     }}/>
                    <p>{item.sku.toUpperCase()}</p>
                    <p className="product-name">{item.name}</p>
+                   <p>{capitalize(item.product_type)}</p>
                    <p>{item.price}$</p>
                    <p>{processSpecifications(item.product_specifications)}</p>
                 </div>
