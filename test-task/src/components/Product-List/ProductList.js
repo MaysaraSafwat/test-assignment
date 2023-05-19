@@ -9,8 +9,7 @@ export default function ProductList(){
     const[selected, setSelected] = useState([]);
 
     const deleteSelectedItems = () => {
-        let data = JSON.parse(selected);
-        deleteProducts(data)
+      deleteProducts(selected)
         .then(res=> console.log(res.status))
         .catch(err=>console.log(err))
     
