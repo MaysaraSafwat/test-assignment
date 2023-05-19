@@ -55,7 +55,8 @@ export default function AddProduct(){
       createProduct(data , type)
       .then(res=>{
         console.log(res)
-        navigate("/")
+        //navigate("/")
+        window.location.replace("/")
       }
         )
       .catch(err=>console.log(err))
@@ -180,5 +181,6 @@ export default function AddProduct(){
 
     )
 }
+
 
 
